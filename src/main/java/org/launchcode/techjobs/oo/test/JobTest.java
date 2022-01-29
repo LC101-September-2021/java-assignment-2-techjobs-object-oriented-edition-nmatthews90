@@ -21,6 +21,7 @@ public class JobTest {
     Job second_test_job;
     Job full_test_job;
     Job second_full_test_job;
+    Job empty_field_test_job;
 
     @Before
     public void createJobObject() {
@@ -29,6 +30,8 @@ public class JobTest {
 
         full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         second_full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        empty_field_test_job = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
     @Test
@@ -51,4 +54,28 @@ public class JobTest {
         Assert.assertFalse(first_test_job.equals(second_full_test_job));
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Assert.assertEquals('\n',full_test_job.toString().charAt(0));
+        Assert.assertEquals('\n', full_test_job.toString().charAt(full_test_job.toString().length() - 1));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Assert.assertEquals("\nID: " + full_test_job.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n" , full_test_job.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Assert.assertEquals("\nID: " + empty_field_test_job.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Data not available\nPosition Type: Quality control\nCore Competency: Persistence\n" , empty_field_test_job.toString());
+    }
+
+
+
 }
+//        ID:  _______
+//        Name: _______
+//        Employer: _______
+//        Location: _______
+//        Position Type: _______
+//        Core Competency: _______

@@ -57,6 +57,9 @@ public class Job {
     }
 
     public String getName() {
+        if (name == null || name.isEmpty()) {
+            return "Data not available";
+        }
         return name;
     }
 
@@ -95,4 +98,16 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
+    @Override
+    public String toString() {
+            return "\n" +
+                    "ID: " + id +
+                    "\nName: " + name +
+                    "\nEmployer: " + employer.getValue() + //getValue()
+                    "\nLocation: " + location.getValue() +
+                    "\nPosition Type: " + positionType.getValue() +
+                    "\nCore Competency: " + coreCompetency.getValue() +
+                    "\n";
+        }
 }
