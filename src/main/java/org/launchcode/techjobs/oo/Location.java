@@ -9,7 +9,7 @@ public class Location {
     private String value;
 
     public Location() {
-        id = nextId;
+       id = nextId;
         nextId++;
     }
 
@@ -20,7 +20,6 @@ public class Location {
         this();
         this.value = value;
     }
-
 
     // Custom toString, equals, and hashCode methods:
 
