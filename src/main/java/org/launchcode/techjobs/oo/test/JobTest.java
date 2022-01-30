@@ -18,25 +18,11 @@ import org.launchcode.techjobs.oo.Location;
 @RunWith(JUnit4.class)
 public class JobTest {
 
-    Job first_test_job;
-    Job second_test_job;
-    Job full_test_job;
-    Job second_full_test_job;
-    Job empty_field_test_job;
-
-    @Before
-    public void createJobObject() {
-        first_test_job = new Job();
-        second_test_job = new Job();
-
-        full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        second_full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
-        empty_field_test_job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-    }
-
     @Test
     public void testSettingJobId() {
+        Job first_test_job = new Job();
+        Job second_test_job = new Job();
+
         Assert.assertEquals(first_test_job.getId(), second_test_job.getId(), 1);
         Assert.assertNotEquals(first_test_job.getId(), second_test_job.getId());
     }
@@ -46,11 +32,11 @@ public class JobTest {
 
        Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        Assert.assertNotNull(full_test_job.getName());
-        Assert.assertNotNull(full_test_job.getEmployer());
-        Assert.assertNotNull(full_test_job.getLocation());
-        Assert.assertNotNull(full_test_job.getPositionType());
-        Assert.assertNotNull(full_test_job.getCoreCompetency());
+//        Assert.assertNotNull(full_test_job.getName());
+//        Assert.assertNotNull(full_test_job.getEmployer());
+//        Assert.assertNotNull(full_test_job.getLocation());
+//        Assert.assertNotNull(full_test_job.getPositionType());
+//        Assert.assertNotNull(full_test_job.getCoreCompetency());
 
         Assert.assertEquals("Product tester", full_test_job.getName());
         Assert.assertEquals("ACME", full_test_job.getEmployer().getValue());
@@ -76,17 +62,22 @@ public class JobTest {
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
+        Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
         Assert.assertEquals('\n',full_test_job.toString().charAt(0));
         Assert.assertEquals('\n', full_test_job.toString().charAt(full_test_job.toString().length() - 1));
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
+        Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
         Assert.assertEquals("\nID: " + full_test_job.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n" , full_test_job.toString());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
+        Job empty_field_test_job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         Assert.assertEquals("\nID: " + empty_field_test_job.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n" , empty_field_test_job.toString());
     }
 
