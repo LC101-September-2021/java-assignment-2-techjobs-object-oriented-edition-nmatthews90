@@ -11,6 +11,7 @@ import org.launchcode.techjobs.oo.Job;
 import org.launchcode.techjobs.oo.PositionType;
 import org.launchcode.techjobs.oo.Location;
 
+
 /**
  * Created by LaunchCode
  */
@@ -31,7 +32,7 @@ public class JobTest {
         full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         second_full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        empty_field_test_job = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        empty_field_test_job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
     }
 
     @Test
@@ -42,16 +43,35 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
+
+       Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        Assert.assertNotNull(full_test_job.getName());
+        Assert.assertNotNull(full_test_job.getEmployer());
+        Assert.assertNotNull(full_test_job.getLocation());
+        Assert.assertNotNull(full_test_job.getPositionType());
+        Assert.assertNotNull(full_test_job.getCoreCompetency());
+
+        Assert.assertEquals("Product tester", full_test_job.getName());
+        Assert.assertEquals("ACME", full_test_job.getEmployer().getValue());
+        Assert.assertEquals("Desert", full_test_job.getLocation().getValue());
+        Assert.assertEquals("Quality control", full_test_job.getPositionType().getValue());
+        Assert.assertEquals("Persistence", full_test_job.getCoreCompetency().getValue());
+
         Assert.assertTrue(full_test_job.getName() instanceof String);
         Assert.assertTrue(full_test_job.getEmployer() instanceof Employer);
         Assert.assertTrue(full_test_job.getLocation() instanceof Location);
         Assert.assertTrue(full_test_job.getPositionType() instanceof PositionType);
         Assert.assertTrue(full_test_job.getCoreCompetency() instanceof CoreCompetency);
+
     }
 
     @Test
     public void testJobsForEquality() {
-        Assert.assertFalse(first_test_job.equals(second_full_test_job));
+        Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job second_full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        Assert.assertFalse(full_test_job .equals(second_full_test_job));
     }
 
     @Test
@@ -67,15 +87,7 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField() {
-        Assert.assertEquals("\nID: " + empty_field_test_job.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Data not available\nPosition Type: Quality control\nCore Competency: Persistence\n" , empty_field_test_job.toString());
+        Assert.assertEquals("\nID: " + empty_field_test_job.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n" , empty_field_test_job.toString());
     }
 
-
-
 }
-//        ID:  _______
-//        Name: _______
-//        Employer: _______
-//        Location: _______
-//        Position Type: _______
-//        Core Competency: _______

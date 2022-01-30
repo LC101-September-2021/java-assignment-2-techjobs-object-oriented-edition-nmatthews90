@@ -39,12 +39,12 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id;
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
 
@@ -102,8 +102,8 @@ public class Job {
     @Override
     public String toString() {
             return "\n" +
-                    "ID: " + id +
-                    "\nName: " + name +
+                    "ID: " + getId() +
+                    "\nName: " + getName() +
                     "\nEmployer: " + employer.getValue() + //getValue()
                     "\nLocation: " + location.getValue() +
                     "\nPosition Type: " + positionType.getValue() +
