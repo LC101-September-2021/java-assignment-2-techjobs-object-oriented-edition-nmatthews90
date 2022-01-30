@@ -1,7 +1,6 @@
 package org.launchcode.techjobs.oo.test;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -32,11 +31,6 @@ public class JobTest {
 
        Job full_test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-//        Assert.assertNotNull(full_test_job.getName());
-//        Assert.assertNotNull(full_test_job.getEmployer());
-//        Assert.assertNotNull(full_test_job.getLocation());
-//        Assert.assertNotNull(full_test_job.getPositionType());
-//        Assert.assertNotNull(full_test_job.getCoreCompetency());
 
         Assert.assertEquals("Product tester", full_test_job.getName());
         Assert.assertEquals("ACME", full_test_job.getEmployer().getValue());
